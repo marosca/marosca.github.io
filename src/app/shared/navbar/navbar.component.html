@@ -1,0 +1,43 @@
+<marosca-hamburguesa
+	(onChangeStatus)="toogleNavBar($event)">
+</marosca-hamburguesa>
+
+<nav class="menu-lateral navbar" id="menuPrincipal" #navBar>
+	<!-- d-none d-md-block -->
+	  <div class="menu-contenido">
+
+			<div class="menu-item nav-item nav-link" id="lamparaContainer"
+				(click)="onGoSection.emit('#quien_soy')"
+				(mouseover)="playSvg('lampara')"
+				(mouseleave)="stopSvg('lampara')">
+				 <h3>SOBRE MÍ</h3>
+				 <div class="ico" id="lampara"></div>
+				 <h6>¿Quién soy?</h6>
+			</div>
+
+
+			<div class="menu-item nav-item nav-link" id="maletinContainer"
+				(click)="onGoSection.emit('#proyectos')"
+				(mouseover)="playSvg('maletin')"
+				(mouseleave)="stopSvg('maletin')">
+				 <h3>PROYECTOS</h3>
+				 <div class="ico" id="maletin"></div>
+				 <h6>VER PORTAFOLIO</h6>
+			</div>
+
+
+
+			<div class="menu-item nav-item nav-link" id="telefonoContainer"
+				(click)="onGoSection.emit('#contacto')"
+				(mouseover)="playSvg('telefono')"
+				(mouseleave)="stopSvg('telefono')">
+				 <h3>CONTACTO</h3>
+				 <div class="ico" id="telefono"></div>
+				 <h6>TE ESCUCHO</h6>
+			</div>
+
+
+	  </div>
+ </nav>
+
+<div *ngIf="isOpen" class="overlay fadeIn" (click)="closeNavBar()"></div>

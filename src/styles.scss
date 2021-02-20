@@ -1,1 +1,660 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {height: 100%!important}
+body{
+	font-family: "Georgia",serif;
+}
+.bottom-3{
+	margin-bottom:3em
+}
+.bottom-2{
+	margin-bottom: 2em
+}
+.bottom-1{
+	margin-bottom: 1em
+}
+
+
+
+/* MENÚ LATERAL */
+.menu-lateral{
+	width: 200px;
+	position:fixed!important;
+	height: 100%;
+	text-align: center;
+	border-right: 1px solid rgb(238, 238, 238);
+	top: 0;
+	left: -200px;
+	background: white;
+	z-index: 10;
+	transition: all 0.5s ease;
+}
+.menu-lateral.abrir{
+	left: 0;
+}
+
+
+.menu-contenido{
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0;
+}
+
+.menu-item{
+	margin: 5em auto;
+	position:relative;
+	cursor: pointer
+}
+.menu-item h3{
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 23px;
+	padding: 0;
+	margin: 0;
+	font-weight: normal
+}
+.menu-item .ico{
+	width: 23px;
+	display: inline-block;
+}
+
+.menu-item .ico:before{
+	content: "--------";
+	display: block;
+	position: absolute;
+	font-size: 10px;
+	left: 117px;
+	top:29px
+}
+
+.menu-item .ico:after{
+	content: "--------";
+	display: block;
+	position: absolute;
+	font-size: 10px;
+	left: 54px;
+	top:29px
+}
+
+.menu-item h6{
+	font-family: "Georgia", serif;
+	text-transform: uppercase;
+	font-size: 13px;
+	margin-top: -5px;
+	font-weight: normal;
+	transition: all 0.4s ease;
+}
+.menu-item:hover h6{
+	letter-spacing: 2px;
+}
+.menu-item:hover h3, .menu-item:hover h6{
+	color: #b20606;
+}
+
+.menu-item svg{
+	transition: all 0.4s ease
+}
+
+.menu-item:hover svg{
+	transform: scale(1.7)!important;
+}
+
+@media (max-height: 576px){
+	.menu-item{
+		margin: 1.5em auto;
+	}
+}
+/*++++++++++++++++++ SECCIONES +++++++++++++++++++++*/
+.contenido{
+	padding: 15px;
+	max-width: 2000px;
+	position: relative
+}
+.seccion{
+	max-width: 100%;
+	margin: 0 auto;
+	margin-bottom:2em;
+	padding-top:2em
+}
+
+.cabecera_seccion{
+	margin-bottom: 1em;
+}
+.cabecera_seccion h2{
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 1.8rem;
+	font-weight: bold;
+	letter-spacing: 10px;
+}
+.cabecera_seccion h2 > span {
+	font-weight: 100;
+}
+.cabecera_seccion h3 {
+	font-size: 1.1em;
+	color: #b20606;
+}
+.cabecera_seccion h3 span{
+	font-family: "Roboto Condensed", sans-serif;
+	font-weight: bold;
+	color: black;
+}
+
+.seccion p{
+	font-size: 1.1em
+}
+
+/* 1.------------------ Sección "sobre_mi"---------------- */
+
+.logo_central{
+	width: 160px
+}
+
+.seccion .datos{
+	font-family: "Georgia", serif;
+}
+.seccion .datos h3{
+	font-size: 0.8rem;
+	font-weight: 100;
+}
+
+.entradilla p{
+	margin-bottom: 2em;
+}
+.entradilla span{
+	color: #b20606;
+}
+
+.curri{
+	cursor: pointer;
+	margin-bottom:1.5em;
+	color: #b20606;
+	font-family: "Roboto Condensed", sans-serif;
+	font-weight: bold;
+}
+.curri img{
+	width: 50px;
+	transition: all 0.2s ease
+}
+.curri:hover img{
+	width: 90px;
+	transform: rotate(4deg);
+}
+.curri a:hover{
+	text-decoration:none
+}
+.curri p{
+	margin: 4px 0 0;
+	color: #b20606;
+}
+
+.curri p:nth-child(3){
+	font-family: Georgia;
+	font-weight: 100;
+	font-size: 0.7em;
+	margin-top: 0;
+	padding: 0;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	transition:all 0.4s ease
+}
+.curri:hover p:nth-child(3){
+	letter-spacing: 4px;
+}
+
+.cargo{
+	margin-top:-2em
+}
+.cargo p{
+	margin: -14px;
+	padding: 0;
+	font-family: "Roboto Condensed", sans-serif;
+	font-weight: bold;
+	font-size: 1.3em;
+}
+.cargo p:nth-child(1){
+	color:#3fb2ba;
+}
+.cargo p:nth-child(1) > span{
+	color:#b20606!important;
+}
+.cargo p:nth-child(2){
+	font-weight: 100;
+	font-style: italic;
+}
+.cargo p:nth-child(3){
+	color: #b20606;
+}
+.cargo p:nth-child(3) span{
+	color:#3fb2ba!important;
+}
+
+.iconos_marcas{
+	margin-top: 1em;
+	padding: 15px;
+
+}
+.iconos_marcas > div{
+	margin: 0 auto
+}
+.iconos_marcas img{
+	cursor:pointer;
+	width: 25px;
+	margin-right: 1em;
+	margin-bottom: 1em;
+	filter: grayscale(100%);
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	transition: all 0.3s ease;
+
+
+}
+.iconos_marcas img:hover{
+	filter: grayscale(0%);
+	-webkit-filter: grayscale(0%);
+	-moz-filter: grayscale(0%);
+	-ms-filter: grayscale(0%);
+	-o-filter: grayscale(0%)
+}
+
+
+/* 2 . ---------------- Sección "proyectos" ----------------- */
+
+.contacto h2:after, .proyectos h2:after{
+	content: "-----------------------------";
+	display: block;
+	position: absolute;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	font-size: 15px;
+	letter-spacing: 4px;
+	font-weight: 100;
+	bottom: 29px;
+}
+
+
+
+.proyecto{
+	max-height: 200px;
+	background: black;
+	overflow:hidden;
+
+}
+.proyecto figure{
+	overflow: hidden;
+	position: relative;
+	max-height: 200px;
+	position: relative
+}
+
+.proyecto.front-end:before{
+	content: "";
+	background: url("assets/img/desarrollo.png") top left no-repeat;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 50px;
+	height: 50px;
+	z-index: 100;
+	background-size: 90%;
+}
+
+.proyecto.motion:before{
+	content: "";
+	background: url("assets/img/television.png") top left no-repeat;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 50px;
+	height: 50px;
+	z-index: 100;
+	background-size: 90%;
+}
+.proyecto.ambos:before{
+	content: "";
+	background: url("assets/img/ambos.png") top left no-repeat;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 50px;
+	height: 50px;
+	z-index: 100;
+	background-size: 90%;
+}
+.proyecto img{
+	width: 100%;
+	/*filter: grayscale(100%);
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);*/
+	transition: all 0.4s ease
+}
+.proyecto figcaption{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 6px;
+	background: rgba(0,0,0, 0.6);
+	transition: all 0.4s ease
+}
+
+.proyecto figcaption span{
+	font-family: "Roboto Condensed";
+	font-weight: normal;
+	font-size:1.2em;
+	margin-bottom: 0;
+	text-align: left;
+	transition: all 0.4s ease;
+	color: white;
+	display:block;
+
+}
+
+.proyecto:hover figcaption{
+	background: rgba(0,0,0, 0);
+}
+
+.proyecto:hover img{
+	filter: grayscale(0%);
+	-webkit-filter: grayscale(0%);
+	-moz-filter: grayscale(0%);
+	-ms-filter: grayscale(0%);
+	-o-filter: grayscale(0%);
+	transform: scale(1.1);
+}
+
+.proyecto:hover figcaption span{
+	color:#3fb2ba;
+	margin-top: -33px
+}
+
+/* 3 . ---------------- Sección "Contacto" ----------------- */
+.email{
+	margin: 0!important;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.5em!important;
+	font-family: "Roboto Condensed";
+	color: #bb2818;
+}
+
+.telefono{
+	text-align: center;
+	font-size: 1.5em!important;
+	color:#3fb2ba;
+}
+
+/* . ---------------- Detalle proyecto ----------------- */
+.detalle_proyecto p.departamento{
+	font-family: Roboto Condensed;
+	letter-spacing: 1px;
+	text-decoration: dashed;
+	margin-bottom: 0;
+	font-weight: bold;
+}
+
+.detalle_proyecto p.cliente{
+	color: #bb2818;
+	font-family: Roboto;
+	font-size: 1em;
+}
+.btn-volver{
+	color: #fff;
+	background-color: #b20707;
+
+	font-family: Roboto Condensed;
+	font-size: 1.1em;
+	font-weight: 100;
+	padding: 5px 20px;
+}
+.btn-volver:hover{
+	color: white;
+	background: #3fb2ba;
+}
+.video {
+	position:relative;
+	width:100%;
+	height:100%;
+	padding-bottom:56%;/*un padding en %, es en relación a la altura de la caja. No se puede poner height: 56%, porque sería en proporción a la altura de la caja/body/html que lo contenga. Y es necesario que sea en función del ancho de vídeo para guardar la relación 16/9*/
+}
+
+.video iframe {
+	/*debe tener un alto y ancho del 100% pero si no le ponemos posición absoluta no funciona, porque relamente la capa video no tiene un alto, su alto es 0, lo que tienes un padding. Al poner una posición absoluta, el video transciende los limites de la capa que lo contiene, por eso lo vemos entero*/
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%!important;
+	height:100%!important;
+}
+
+
+
+/************************MEDIA QUERIES***********************************/
+@media (max-width: 576px){
+	.col-xs-6{
+		-ms-flex: 0 0 50%;
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+}
+@media (min-width: 576px) {
+	/*.cargo{
+	margin-top: 30px!important;
+	}*/
+	.curri img {
+		width: 74px;
+		transition: all 0.2s ease;
+	}
+	.cabecera_seccion {
+		margin-bottom: 3em;
+	}
+	.detalle_proyecto .cabecera_seccion{
+		margin-bottom: 1;
+	}
+	.email{
+		font-size: 2em!important;
+	}
+	.cargo p{
+		font-size: 1.6em;
+	}
+
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+	.overlay {
+		display: none;
+	}
+	.menu-lateral{
+		left: 0;
+	}
+	.hamburguesa{
+		display:none!important;
+	}
+	/*++++++++++++++++++ SECCIONES +++++++++++++++++++++*/
+	.contenido{
+		padding-left: 200px;
+		min-height: 100%
+	}
+	.seccion{
+		max-width: 90%;
+	}
+
+}
+
+/* Large devices (desktops, 992px an up)*/
+@media (min-width: 992px) {
+	/*++++++++++++++++++ SECCIONES +++++++++++++++++++++*/
+	.seccion{
+		max-width: 80%;
+	}
+	.cargo{
+		margin: 1em 0 4em;
+		margin-top:1em!important;
+	}
+}
+
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) { }
+
+
+
+/*+++++++MENU HAMBURGUESA+++++++*/
+/* Icon 2 */
+
+.hamburguesa {
+	display:block;
+	cursor:pointer;
+	margin-left:1em;
+	width: 35px;
+	height: 27px;
+	position: relative;
+	/* margin: 50px auto; */
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+	-webkit-transition: .5s ease-in-out;
+	-moz-transition: .5s ease-in-out;
+	-o-transition: .5s ease-in-out;
+	transition: .5s ease-in-out;
+	cursor: pointer;
+	position: fixed;
+	z-index: 99;
+	top: 20px;
+	left: 10px
+}
+
+.hamburguesa span {
+	display: block;
+	position: absolute;
+	height: 2px;
+	width: 50%;
+	background: #d3531a;
+	opacity: 1;
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+	-webkit-transition: .25s ease-in-out;
+	-moz-transition: .25s ease-in-out;
+	-o-transition: .25s ease-in-out;
+	transition: .25s ease-in-out;
+}
+
+.hamburguesa span:nth-child(even) {
+	left: 50%;
+}
+
+.hamburguesa span:nth-child(odd) {
+	left:0px;
+}
+
+.hamburguesa span:nth-child(1), .hamburguesa span:nth-child(2) {
+	top: 0px;
+}
+
+.hamburguesa span:nth-child(3), .hamburguesa span:nth-child(4) {
+	top: 12px;
+}
+
+.hamburguesa span:nth-child(5), .hamburguesa span:nth-child(6) {
+	top: 24px;
+}
+
+.hamburguesa.open span:nth-child(1),.hamburguesa.open span:nth-child(6) {
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.hamburguesa.open span:nth-child(2),.hamburguesa.open span:nth-child(5) {
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.hamburguesa.open span:nth-child(1) {
+	left: 24px;
+	top: 9px;
+	width: 100%;
+}
+
+.hamburguesa.open span:nth-child(2) {
+	left: 0;
+	top: 9px;
+	width: 100%;
+}
+
+.hamburguesa.open span:nth-child(3) {
+	left: -50%;
+	opacity: 0;
+}
+
+.hamburguesa.open span:nth-child(4) {
+	left: 100%;
+	opacity: 0;
+}
+
+.hamburguesa.open span:nth-child(5) {
+	left: -16px;
+	top: 9px;
+	width: 100%;
+}
+
+.hamburguesa.open span:nth-child(6) {
+	left: calc(50% - 11px);
+	top: 9px;
+	width: 100%;
+}
+
+
+/*++++++++++++++*ANIMATE FAST FADEIN++++++++++++++++++***/
+/* Animaciones */
+.animated {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+.fast {
+	-webkit-animation-duration: 0.4s;
+	animation-duration: 0.4s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		top: 35px
+	}
+
+	to {
+		opacity: 1;
+		top: 0;
+	}
+}
+
+.fadeIn {
+	animation-name: fadeIn;
+}
+
+
+.overlay {
+	background-color: black;
+	opacity: 0.8;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+}
