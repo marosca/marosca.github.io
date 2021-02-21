@@ -246,15 +246,27 @@ body{
 	-ms-filter: grayscale(100%);
 	-o-filter: grayscale(100%);
 	transition: all 0.3s ease;
-
-
+	position: relative;
 }
+
 .iconos_marcas img:hover{
 	filter: grayscale(0%);
 	-webkit-filter: grayscale(0%);
 	-moz-filter: grayscale(0%);
 	-ms-filter: grayscale(0%);
 	-o-filter: grayscale(0%)
+}
+
+.ico-tooling { 
+	position: relative
+}
+.ico-tooling:after {
+	content: attr(data-tooltip);
+	display: block;
+	position: absolute;
+	width: 100px;
+	height: 30px;
+	border: 1px solid red;
 }
 
 

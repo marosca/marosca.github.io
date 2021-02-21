@@ -1,4 +1,5 @@
 <marosca-hamburguesa
+	[isNavBarOpen]="isOpen"
 	(onChangeStatus)="toogleNavBar($event)">
 </marosca-hamburguesa>
 
@@ -7,7 +8,7 @@
 	  <div class="menu-contenido">
 
 			<div class="menu-item nav-item nav-link" id="lamparaContainer"
-				(click)="onGoSection.emit('#quien_soy')"
+				(click)="goToSection('#quien_soy')"
 				(mouseover)="playSvg('lampara')"
 				(mouseleave)="stopSvg('lampara')">
 				 <h3>SOBRE MÍ</h3>
@@ -17,7 +18,7 @@
 
 
 			<div class="menu-item nav-item nav-link" id="maletinContainer"
-				(click)="onGoSection.emit('#proyectos')"
+				(click)="goToSection('#proyectos')"
 				(mouseover)="playSvg('maletin')"
 				(mouseleave)="stopSvg('maletin')">
 				 <h3>PROYECTOS</h3>
@@ -28,7 +29,7 @@
 
 
 			<div class="menu-item nav-item nav-link" id="telefonoContainer"
-				(click)="onGoSection.emit('#contacto')"
+				(click)="goToSection('#contacto')"
 				(mouseover)="playSvg('telefono')"
 				(mouseleave)="stopSvg('telefono')">
 				 <h3>CONTACTO</h3>

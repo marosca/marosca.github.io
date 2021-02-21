@@ -1,12 +1,15 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 @Component({
   selector: 'marosca-hamburguesa',
   templateUrl: './hamburguesa.component.html',
   styleUrls: ['./hamburguesa.component.css']
 })
-export class HamburguesaComponent implements OnInit {
+export class HamburguesaComponent implements OnInit , OnChanges {
   @ViewChild('openCloseIcon', { static: false })
   openCloseIcon!: ElementRef;
+
+  @Input()
+  isNavBarOpen = false
 
   @Output()
   onChangeStatus: EventEmitter<boolean> = new EventEmitter()
@@ -16,14 +19,28 @@ export class HamburguesaComponent implements OnInit {
 
   ngOnInit() {}
 
+  ngOnChanges({ isNavBarOpen }: SimpleChanges) {
+    if (!isNavBarOpen.currentValue) {
+      this.closeHamburger()
+    }
+  }
+
   toobleNavBar() {
     this.isOpen = !this.isOpen 
     if (this.isOpen) {
-      this.openCloseIcon.nativeElement.classList.add('open')
-      this.onChangeStatus.emit(true)
+      this.openHamburger()
     } else {
-      this.openCloseIcon.nativeElement.classList.remove('open')
-      this.onChangeStatus.emit(false)
+      this.closeHamburger()
     }
+  }
+
+  openHamburger() {
+    this.openCloseIcon.nativeElement.classList.add('open')
+    this.onChangeStatus.emit(true)
+  }
+
+  closeHamburger() {
+    this.openCloseIcon.nativeElement.classList.remove('open')
+    this.onChangeStatus.emit(false)
   }
 }

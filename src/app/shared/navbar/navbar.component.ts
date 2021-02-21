@@ -22,6 +22,30 @@ export class NavbarComponent implements OnInit {
 
 	constructor() {}
 
+	ngOnInit() {
+		this.lampara = bodymovin.loadAnimation({
+			container: document.getElementById('lampara'),
+			renderer: 'svg',
+			loop: true,
+			autoplay: false,
+			path: 'assets/icons/lampara/lampara_ani.json'
+		});
+		this.maletin = bodymovin.loadAnimation({
+			container: document.getElementById('maletin'),
+			renderer: 'svg',
+			loop: true,
+			autoplay: false,
+			path: 'assets/icons/maletin/maletin_ani.json'
+		});
+		this.telefono = bodymovin.loadAnimation({
+			container: document.getElementById('telefono'),
+			renderer: 'svg',
+			loop: true,
+			autoplay: false,
+			path: 'assets/icons/telefono/telefono_ani.json'
+		});
+	}
+
 	toogleNavBar(isNavBarOpen: boolean) {
 		this.isOpen = isNavBarOpen
 		if (isNavBarOpen) {
@@ -34,15 +58,16 @@ export class NavbarComponent implements OnInit {
 	closeNavBar() {
 		this.navBar.nativeElement.classList.remove('abrir')
 		this.navBar.nativeElement.classList.add('cerrar')
+		this.isOpen = false
 	}
 
 	openNavBar() {
 		this.navBar.nativeElement.classList.remove('cerrar')
 		this.navBar.nativeElement.classList.add('abrir')
+		this.isOpen = true
 	}
 
 	playSvg(icon:string){
-
 		switch( icon ) {
 			case 'lampara':
 				this.lampara.play();
@@ -71,27 +96,8 @@ export class NavbarComponent implements OnInit {
 		}
 	}
 
-	ngOnInit() {
-		this.lampara = bodymovin.loadAnimation({
-			container: document.getElementById('lampara'),
-			renderer: 'svg',
-			loop: true,
-			autoplay: false,
-			path: 'assets/icons/lampara/lampara_ani.json'
-		});
-		this.maletin = bodymovin.loadAnimation({
-			container: document.getElementById('maletin'),
-			renderer: 'svg',
-			loop: true,
-			autoplay: false,
-			path: 'assets/icons/maletin/maletin_ani.json'
-		});
-		this.telefono = bodymovin.loadAnimation({
-			container: document.getElementById('telefono'),
-			renderer: 'svg',
-			loop: true,
-			autoplay: false,
-			path: 'assets/icons/telefono/telefono_ani.json'
-		});
+	goToSection(section: string) {
+		this.onGoSection.emit(section);
+		this.	closeNavBar()
 	}
 }
