@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./quien-soy.component.scss']
 })
 export class QuienSoyComponent implements OnInit {
-
+  // logoImg = require('../../../assets/img/logo.PNG')
   constructor() { }
 
   ngOnInit() {

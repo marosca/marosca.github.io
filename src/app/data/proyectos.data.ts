@@ -24,7 +24,7 @@ export const PROYECTOS: Proyecto[] = [
     imagen_home: 'assets/img_proyectos/mm_eshops/mm_home.jpg',
     imagen_portada: 'assets/img_proyectos/mm_eshops/mm_portada.jpg',
     texto: {
-      departamento: 'Senior frontend analyst para el Grupo MásMóvil',
+      departamento: 'Senior frontend developer para el Grupo MásMóvil',
       cliente: 'Equipo de B2C een Grupo MásMóvil',
       descripcion: 'Frontend software developer para las "eShops" de la compañia, trabajando en distintas tecnologías según el proyecto en equipos Agile. Stack: desarrollo en REACT, next, react-redux, redux-toolkit, redux-persist, redux-observable, typescript, material-ui, tesiting Jest, Cypress, lerna, etc. Entornos de integración continua con jenkins. Integración con apis de terceros..., desarrollo en ANGULAR (actualizados a últimas versiones) + redux (NgRx) + rxjs + ssr + karma, consultas REST APIs, git + github, entorno de integración continua (circle ci, Jenkins) ... etc.',
     },

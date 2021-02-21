@@ -20,7 +20,7 @@ export class HamburguesaComponent implements OnInit , OnChanges {
   ngOnInit() {}
 
   ngOnChanges({ isNavBarOpen }: SimpleChanges) {
-    if (!isNavBarOpen.currentValue) {
+    if (isNavBarOpen && !isNavBarOpen.firstChange && !isNavBarOpen.currentValue) {
       this.closeHamburger()
     }
   }
