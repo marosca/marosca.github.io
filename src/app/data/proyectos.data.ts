@@ -18,7 +18,7 @@ export const PROYECTOS: Proyecto[] = [
   {
     tipo: 'front-end',
     texto_tipo: 'front-end',
-    nombre: 'MásMóvil eShops',
+    nombre: 'MásMóvil eShops Yoigo',
     logo: null,
     video: null,
     imagen_home: 'assets/img_proyectos/mm_eshops/mm_home.jpg',
