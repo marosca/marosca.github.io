@@ -39,7 +39,7 @@ export const PROYECTOS: Proyecto[] = [
       'assets/img_proyectos/mm_eshops/mm_8.png',
       'assets/img_proyectos/mm_eshops/mm_9.png',
       'assets/img_proyectos/mm_eshops/mm_10.png'],
-    url: 'graphene-telefonica',
+    url: 'masmovil-eshops',
   },
   {
     tipo: 'front-end',
