@@ -7,7 +7,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build": "ng build --prod --output-path docs"
+    "build": "ng build --prod --output-path docs && cp ./copy_to_docs/CNAME ./docs/CNAME && cp ./copy_to_docs/404.html ./docs/404.html"
   },
   "private": true,
   "dependencies": {
