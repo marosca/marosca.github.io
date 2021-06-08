@@ -17,6 +17,7 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { ProyectoComponent } from './components/proyecto/proyecto.component';
 import { DomseguroPipe } from './pipes/domseguro.pipe';
 import { HamburguesaComponent } from './shared/hamburguesa/hamburguesa.component';
+import { ContenfulService } from './services/contenful.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HamburguesaComponent } from './shared/hamburguesa/hamburguesa.component
     BrowserModule
   ],
   providers: [
-    ProyectosService
+    ProyectosService,
+    ContenfulService
   ],
   bootstrap: [AppComponent]
 })
