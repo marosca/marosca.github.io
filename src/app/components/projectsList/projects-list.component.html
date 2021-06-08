@@ -9,12 +9,12 @@
 
 	 <div class="row">
 		  <!-- COLUMNA DE PROYECTO -->
-		  <div *ngFor="let proyecto of proyectos; let i = index" class="col-sm-6 col-lg-4">
-				<a [routerLink]="getRoute(proyecto)" class="proyecto {{proyecto.tipo}}">
+		  <div *ngFor="let project of projects; let i = index" class="col-sm-6 col-lg-4">
+				<a [routerLink]="getRoute(project)" class="proyecto {{project.type}}">
 					 <figure>
-						  <img [src]="proyecto?.imagen_home">
+						  <img [src]="project?.imageHome">
 						  <figcaption>
-							   <span>{{ proyecto?.nombre }}</span>
+							   <span>{{ project?.name }}</span>
 						  </figcaption>
 					 </figure>
 				</a>

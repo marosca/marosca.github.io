@@ -3,11 +3,11 @@ import { ProyectosService } from '../../services/proyectos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-	selector: 'marosca-proyecto',
-	templateUrl: './proyecto.component.html',
-	styleUrls: ['./proyecto.component.css']
+	selector: 'marosca-project',
+	templateUrl: './project-detail.component.html',
+	styleUrls: ['./project-detail.component.css']
 })
-export class ProyectoComponent implements OnInit {
+export class ProjectDetailComponent implements OnInit {
 
 	proyecto:any;
 

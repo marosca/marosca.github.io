@@ -5,23 +5,23 @@
 	<section id="proyecto" class="seccion detalle_proyecto front">
 		<div class="row">
 			<header class="col-lg-12 text-center cabecera_seccion">
-				<h2>{{ proyecto.nombre }}</h2>
-				<h3><span>&lt;</span> {{ proyecto.texto_tipo }} <span>&gt;</span></h3>
+				<h2>{{ proyecto.name }}</h2>
+				<h3><span>&lt;</span> {{ proyecto.typeText }} <span>&gt;</span></h3>
 				<!-- <h3> <span>&lt;</span> front-end <span>/</span>motion <span>&gt;</span></h3> -->
 			</header>
 		</div>
 
 		<!-- imagen portada si es proyecto de front -->
-		<div class="row bottom-1" *ngIf="proyecto.tipo == 'front-end' || proyecto.tipo == 'ambos'">
+		<div class="row bottom-1" *ngIf="proyecto.type == 'front-end' || proyecto.type == 'ambos'">
 			<div class="col-md-12 col-lg-12 text-center">
 				<figure class="figure">
-					<img class="figure-img img-fluid rounded" [src]="proyecto.imagen_portada" alt="Foto de portada del proyecto The Big Magazine">
+					<img class="figure-img img-fluid rounded" [src]="proyecto.imageCover" alt="Foto de portada del proyecto The Big Magazine">
 				</figure>
 			</div>
 		</div>
 
 		<!-- video si es un proyecto de motion-->
-		<div class="row bottom-3" *ngIf="proyecto.tipo == 'motion'">
+		<div class="row bottom-3" *ngIf="proyecto.type == 'motion'">
 			<div class="col-md-12 col-lg-12 text-center">
 				<div class="video">
 					<iframe [src]="proyecto.video | domseguro: 'https://player.vimeo.com/video/'" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
@@ -29,19 +29,19 @@
 			</div>
 		</div>
 
-		<!-- Descripcion -->
+		<!-- description -->
 		<div class="row bottom-3">
 			<div class="col-md-12 align-self-center">
-				<p class="departamento">{{ proyecto.texto.departamento }}</p>
-				<p class="cliente"><span>Cliente:</span> {{ proyecto.texto.cliente }}</p>
+				<p class="departamento">{{ proyecto.text.department }}</p>
+				<p class="cliente"><span>client:</span> {{ proyecto.text.client }}</p>
 
-				<p>{{ proyecto.texto.descripcion }}</p>
+				<p>{{ proyecto.text.description }}</p>
 			</div>
 
 		</div>
 
 		<!-- video si es un proyecto de ambos-->
-		<div class="row bottom-3" *ngIf="proyecto.tipo == 'ambos'">
+		<div class="row bottom-3" *ngIf="proyecto.type == 'ambos'">
 			<div class="col-md-12 col-lg-12 text-center">
 				<div class="video">
 					<iframe [src]="proyecto.video | domseguro: 'https://player.vimeo.com/video/'" width="800" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
@@ -51,7 +51,7 @@
 
 		<!-- galeria -->
 		<div class="row bottom-3">
-			<div *ngFor="let imagen of proyecto.imagenes" class="col-sm-4 align-self-center margin-b-2">
+			<div *ngFor="let imagen of proyecto.images" class="col-sm-4 align-self-center margin-b-2">
 				<img class="img-fluid rounded" [src]="imagen">
 			</div>
 		</div>

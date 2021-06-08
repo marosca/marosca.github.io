@@ -1,11 +1,11 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
-import { ProyectoComponent } from './components/proyecto/proyecto.component';
+import { ProjectDetailComponent } from './components/projectDetails/project-detail.component';
 
 const APP_ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'proyecto/:url', component: ProyectoComponent },
+  { path: 'proyecto/:url', component: ProjectDetailComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 
