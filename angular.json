@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["bodymovin"],
+            "allowedCommonJsDependencies": ["bodymovin", "contentful"],
             "outputPath": "dist/marosca-web",
             "index": "src/index.html",
             "main": "src/main.ts",

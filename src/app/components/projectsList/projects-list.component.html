@@ -1,0 +1,25 @@
+<section id="proyectos" class="seccion proyectos">
+
+	 <div class="row">
+		  <header class="col-lg-12 text-center cabecera_seccion">
+				<h2>PROYECTOS</h2>
+				<h3> <span>&lt;</span> front-end <span>/</span>motion <span>&gt;</span></h3>
+		  </header>
+	 </div>
+
+	 <div class="row">
+		  <!-- COLUMNA DE PROYECTO -->
+		  <div *ngFor="let project of projects; let i = index" class="col-sm-6 col-lg-4">
+				<a [routerLink]="getRoute(project)" class="proyecto {{project.type}}">
+					 <figure>
+						  <img [src]="project?.imageHome">
+						  <figcaption>
+							   <span>{{ project?.name }}</span>
+						  </figcaption>
+					 </figure>
+				</a>
+
+		  </div>
+		  <!-- FIN DE COLUMNA  -->
+	 </div><!-- fin row de proyecto-->
+</section>

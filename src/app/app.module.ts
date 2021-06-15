@@ -1,32 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-//sitema de rutas
+// Routing
 import { APP_ROUTING } from './app.routes';
 
-//servicios
+// Services
 import { ProyectosService } from './services/proyectos.service';
+import { ContenfulService } from './contentful/service/contenful.service';
 
-//Componentes
+// Components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
-import { QuienSoyComponent } from './components/quien-soy/quien-soy.component';
-import { ProyectosComponent } from './components/proyectos/proyectos.component';
-import { ContactoComponent } from './components/contacto/contacto.component';
-import { ProyectoComponent } from './components/proyecto/proyecto.component';
+import { AboutMeComponent } from './components/quien-soy/about-me.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { ProjectDetailComponent } from './components/projectDetails/project-detail.component';
 import { DomseguroPipe } from './pipes/domseguro.pipe';
 import { HamburguesaComponent } from './shared/hamburguesa/hamburguesa.component';
-
+import { ProjectsListComponent } from './components/projectsList/projects-list.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    QuienSoyComponent,
-    ProyectosComponent,
-    ContactoComponent,
-    ProyectoComponent,
+    AboutMeComponent,
+    ProjectsListComponent,
+    ContactComponent,
+    ProjectDetailComponent,
     DomseguroPipe,
     HamburguesaComponent
   ],
@@ -35,7 +35,8 @@ import { HamburguesaComponent } from './shared/hamburguesa/hamburguesa.component
     BrowserModule
   ],
   providers: [
-    ProyectosService
+    ProyectosService,
+    ContenfulService
   ],
   bootstrap: [AppComponent]
 })
