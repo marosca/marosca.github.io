@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ContenfulService } from 'src/app/contentful/service/contenful.service';
+import { ProjectsLanding } from 'src/app/models/projects.model';
 
 @Component({
   selector: 'marosca-home',
@@ -7,6 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor() { }
-  ngOnInit() {}
+  landingData!: ProjectsLanding
+
+  constructor(private contentfulService: ContenfulService) { }
+  async ngOnInit() {
+    this.landingData = await this.contentfulService.getProjects()
+  }
 }

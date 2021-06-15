@@ -1,20 +1,3 @@
-export interface Proyecto {
-  type: string
-  typeText: string,
-  name: string,
-  logo: string | null,
-  video: string | null,
-  imageHome: string,
-  imageCover?: string | null,
-  text: {
-    department: string,
-    client: string,
-    description: string,
-  },
-  images: string[],
-  url: string,
-}
-
 enum ProjectType {
   FRONTEND = 'front-end',
   MOTION = 'motion',

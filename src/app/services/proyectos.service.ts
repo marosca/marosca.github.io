@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PROYECTOS } from '../data/proyectos.data';
+import { PROYECTOS } from '../models/proyectos.data';
 
 
 @Injectable()

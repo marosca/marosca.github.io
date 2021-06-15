@@ -4,9 +4,15 @@
 
 <div class="contenido animated fadeIn">
 
-	<marosca-quien-soy></marosca-quien-soy>
+	<marosca-about-me *ngIf="landingData?.aboutMe"
+		[aboutMe]="landingData.aboutMe">
+	</marosca-about-me>
 
-	<marosca-projects-list></marosca-projects-list>
+	<marosca-projects-list *ngIf="landingData?.projects?.length"
+		[projects]="landingData.projects">
+	</marosca-projects-list>
 
-	<marosca-contact></marosca-contact>
+	<marosca-contact *ngIf="landingData?.contact"
+		[contact]="landingData.contact">
+	</marosca-contact>
 </div>
