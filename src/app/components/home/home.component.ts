@@ -13,6 +13,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private contentfulService: ContenfulService) { }
   async ngOnInit() {
-    this.landingData = await this.contentfulService.getProjects()
+    this.landingData = await this.contentfulService.getPageData()
   }
 }

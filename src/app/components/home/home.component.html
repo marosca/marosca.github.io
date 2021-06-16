@@ -5,7 +5,7 @@
 <div class="contenido animated fadeIn">
 
 	<marosca-about-me *ngIf="landingData?.aboutMe"
-		[aboutMe]="landingData.aboutMe">
+		[aboutMe]="landingData.aboutMe" [pdf]="landingData.pdf">
 	</marosca-about-me>
 
 	<marosca-projects-list *ngIf="landingData?.projects?.length"

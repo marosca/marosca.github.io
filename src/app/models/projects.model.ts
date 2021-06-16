@@ -23,6 +23,7 @@ export interface Project {
 
 export interface ProjectsLanding {
   name: string
+  pdf: string
   aboutMe: string
   projects: Project[]
   contact: string

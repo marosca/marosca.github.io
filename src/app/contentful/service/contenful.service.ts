@@ -38,7 +38,7 @@ export class ContenfulService {
     })
   }
 
-  async getProjects() {    
+  async getPageData() {    
     if (this.projectsLandingCache) return this.projectsLandingCache
 
     const query: EntryQuery = {

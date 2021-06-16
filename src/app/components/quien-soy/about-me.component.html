@@ -21,8 +21,8 @@
 					 </div>
 
 
-					 <div class="curri col-xs-6 col-sm-6 col-lg-12">
-						 <a href="assets/Curriculum_Mariola_Moreno.pdf" target="_blank">
+					 <div *ngIf="pdf" class="curri col-xs-6 col-sm-6 col-lg-12">
+						 <a [href]="pdf" target="_blank">
 							 <img src="assets/img/curri.png" alt="Icono Curriculum align-self-center">
 							 <p>CURRÍCULUM</p>
 							 <P>Mi trayectoria</P>

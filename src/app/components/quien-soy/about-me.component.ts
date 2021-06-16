@@ -9,6 +9,9 @@ export class AboutMeComponent implements OnInit {
   @Input()
   aboutMe!: string
 
+  @Input()
+  pdf!: string
+
   constructor() { }
 
   ngOnInit() {

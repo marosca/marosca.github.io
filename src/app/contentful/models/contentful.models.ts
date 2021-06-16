@@ -33,6 +33,7 @@ export interface SimplifiedEntry<T> {
 export interface ContentfulProjectsLanding {
   fields: {
     name: string
+    pdf: Asset
     aboutMe: RichTextDocument
     projects: ContentfulProject[]
     contact: RichTextDocument

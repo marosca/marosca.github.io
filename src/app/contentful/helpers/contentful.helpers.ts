@@ -34,6 +34,7 @@ export function normalizeProjectsLanding(
 
   return {
     name: fields.name,
+    pdf: parseAsset(fields.pdf),
     aboutMe: documentToHtmlString(fields.aboutMe),
     projects: fields.projects.map(entry => normalizeProjectFromContentful(entry)),
     contact: documentToHtmlString(fields.contact),
