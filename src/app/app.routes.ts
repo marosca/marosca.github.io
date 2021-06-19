@@ -4,9 +4,9 @@ import { HomeComponent } from './components/home/home.component';
 import { ProjectDetailComponent } from './components/projectDetails/project-detail.component';
 
 const APP_ROUTES: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'proyecto/:url', component: ProjectDetailComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'home' }
+  { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 
 // export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES, { useHash: true});
