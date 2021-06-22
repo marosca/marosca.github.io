@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ProyectosService } from '../../services/proyectos.service';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContenfulService } from 'src/app/contentful/service/contenful.service';
+import { isPlatformBrowser } from '@angular/common';
+import { GlobalRefService } from 'src/app/services/global-ref.service';
 
 @Component({
 	selector: 'marosca-project',
@@ -11,11 +12,14 @@ import { ContenfulService } from 'src/app/contentful/service/contenful.service';
 export class ProjectDetailComponent implements OnInit {
 	
 	project:any;
+	isBrowser = isPlatformBrowser(this.platformId)
 
 	constructor(
 		private _activatedRoute: ActivatedRoute,
 		private contentfulService: ContenfulService,
-		private router: Router
+		private router: Router,
+		@Inject(PLATFORM_ID) public platformId: Object,
+		private globalRefService: GlobalRefService
 		) { }
 
 		async ngOnInit() {
@@ -28,6 +32,8 @@ export class ProjectDetailComponent implements OnInit {
 				}
 			});
 
-			window.scroll({top: 0});
+			if(this.isBrowser) {
+				this.globalRefService.nativeGlobal.scroll({top: 0});
+			}
 		}
 	}
