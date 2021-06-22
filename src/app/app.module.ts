@@ -18,6 +18,7 @@ import { ProjectDetailComponent } from './components/projectDetails/project-deta
 import { DomseguroPipe } from './pipes/domseguro.pipe';
 import { HamburguesaComponent } from './shared/hamburguesa/hamburguesa.component';
 import { ProjectsListComponent } from './components/projectsList/projects-list.component';
+import { BrowserGlobalRefService, GlobalRefService } from './services/global-ref.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { ProjectsListComponent } from './components/projectsList/projects-list.c
   ],
   providers: [
     ProyectosService,
-    ContenfulService
+    ContenfulService,
+    { provide: GlobalRefService, useClass: BrowserGlobalRefService }
   ],
   bootstrap: [AppComponent]
 })
