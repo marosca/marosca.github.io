@@ -20,10 +20,10 @@ export class BrowserGlobalRefService extends GlobalRefService {
 }
 
 /* istanbul ignore next */
-@Injectable()
-export class NodeGlobalRefService extends GlobalRefService {
-  nativeGlobal: any = global['window']
-}
+// @Injectable()
+// export class NodeGlobalRefService extends GlobalRefService {
+//   nativeGlobal: any = global && global['window']
+// }
 
 @Injectable()
 export abstract class GlobalStorage {
