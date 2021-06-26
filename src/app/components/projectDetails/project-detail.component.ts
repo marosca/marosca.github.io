@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ContenfulService } from 'src/app/contentful/service/contenful.service';
 import { isPlatformBrowser } from '@angular/common';
 import { GlobalRefService } from 'src/app/services/global-ref.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
 	selector: 'marosca-project',
@@ -19,13 +20,16 @@ export class ProjectDetailComponent implements OnInit {
 		private contentfulService: ContenfulService,
 		private router: Router,
 		@Inject(PLATFORM_ID) public platformId: Object,
-		private globalRefService: GlobalRefService
+		private globalRefService: GlobalRefService,
+		private titleService: Title
+
 		) { }
 
 		async ngOnInit() {
 			this._activatedRoute.params.subscribe( async params => {
 				
 				this.project = await this.contentfulService.getProjectDetail(params.url)
+				this.titleService.setTitle(`Mariola Moreno. Proyecto: ${this.project.name}`);
 				
 				if (!this.project) {
 					this.router.navigate(['home'])
