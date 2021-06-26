@@ -19,6 +19,7 @@ import { DomseguroPipe } from './pipes/domseguro.pipe';
 import { HamburguesaComponent } from './shared/hamburguesa/hamburguesa.component';
 import { ProjectsListComponent } from './components/projectsList/projects-list.component';
 import { BrowserGlobalRefService, GlobalRefService } from './services/global-ref.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { BrowserGlobalRefService, GlobalRefService } from './services/global-ref
   ],
   imports: [
     APP_ROUTING,
-    BrowserModule
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    HttpClientModule
   ],
   providers: [
     ProyectosService,

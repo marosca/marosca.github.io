@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { normalizeProjectsLanding } from 'src/app/contentful/helpers/contentful.helpers';
 import { ContenfulService } from 'src/app/contentful/service/contenful.service';
 import { ProjectsLanding } from 'src/app/models/projects.model';
 

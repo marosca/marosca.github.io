@@ -21,7 +21,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": ["bodymovin", "contentful"],
-            "outputPath": "dist/marosca-web",
+            "outputPath": "dist/marosca-web/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -135,6 +135,65 @@
               "devServerTarget": "marosca-web:serve:production"
             }
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/marosca-web/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "optimization": false,
+            "sourceMap": true,
+            "extractLicenses": false
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "sourceMap": false,
+              "extractLicenses": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "marosca-web:build:development",
+              "serverTarget": "marosca-web:server:development"
+            },
+            "production": {
+              "browserTarget": "marosca-web:build:production",
+              "serverTarget": "marosca-web:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "marosca-web:build:production",
+              "serverTarget": "marosca-web:server:production"
+            },
+            "development": {
+              "browserTarget": "marosca-web:build:development",
+              "serverTarget": "marosca-web:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
