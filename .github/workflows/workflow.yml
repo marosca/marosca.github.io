@@ -24,7 +24,6 @@ jobs:
         run: |
           echo "Install dependency"
           npm install
-      - name: Git config
       - run: git config user.email "mariolamoreno@hotmail.es" && git config user.name "marosca" && git add -A && git commit -m "Updated code"
       - name: Deploy
         run: echo "Deploy to heroku"
