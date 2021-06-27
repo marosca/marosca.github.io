@@ -47,14 +47,13 @@ export class ContenfulService {
       })
       .toPromise()
       .then((response: any) => {
-        console.log('haciendo petición------------------');
         return { data: response };
       });
   }
 
   async getPageData() {    
     this.projectsLandingCache = this.state.get<ProjectsLanding>(this.projecstLandingTransferStateKey, null as unknown as ProjectsLanding);
-    console.log('*** projectLandingCache', this.projectsLandingCache)
+
     if (this.projectsLandingCache) return this.projectsLandingCache
 
     const query: EntryQuery = {
