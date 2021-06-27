@@ -102,6 +102,6 @@ export class NavbarComponent implements OnInit {
 
 	goToSection(section: string) {
 		this.onGoSection.emit(section);
-		this.	closeNavBar()
+		this.closeNavBar()
 	}
 }

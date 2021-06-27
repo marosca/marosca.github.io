@@ -17,9 +17,21 @@ i {
 	color: #b20606;
 }
 
-
-
 /* MENÚ LATERAL */
+svg {
+	transform: translate3d(0px, -9px, 0px) !important;
+}
+
+.navbar-link {
+	color: black;
+	display: block;
+  margin: 0;
+}
+.navbar-link:hover, .navbar-link:visited {
+	color: black;
+	text-decoration: none;
+}
+
 .menu-lateral{
 	width: 200px;
 	position:fixed!important;
@@ -76,7 +88,7 @@ i {
 	display: block;
 	position: absolute;
 	font-size: 10px;
-	left: 54px;
+	left: 47px;
 	top:29px
 }
 
@@ -100,7 +112,7 @@ i {
 }
 
 .menu-item:hover svg{
-	transform: scale(1.7)!important;
+	transform: scale(1.5)!important;
 }
 
 @media (max-height: 576px){
