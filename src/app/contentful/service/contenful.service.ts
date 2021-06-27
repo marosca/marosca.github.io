@@ -1,36 +1,29 @@
 import { Injectable } from '@angular/core';
-import { ContentfulClientApi, createClient, Entry, EntryCollection } from 'contentful';
-import { from, Observable, of, pipe } from 'rxjs';
+import { ContentfulClientApi, createClient } from 'contentful';
 import { Project } from 'src/app/models/proyectos.data';
 import { ContentfulProject, ContentfulProjectsLanding, EntriesQuery, EntryQuery, ORDER_BY_NEWEST_QUERY } from '../models/contentful.models';
-import {
-  catchError,
-  distinctUntilChanged,
-  filter,
-  map,
-  switchMap,
-  timeout
-} from 'rxjs/operators'
+
 import { normalizeProjectFromContentful, normalizeProjectsLanding } from '../helpers/contentful.helpers';
 import { ProjectsLanding } from 'src/app/models/projects.model';
 import { environment } from 'src/environments/environment'
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { makeStateKey, TransferState } from '@angular/platform-browser';
 @Injectable({
   providedIn: 'root'
 })
 export class ContenfulService {
   client: ContentfulClientApi
+  // We use transferState, to transfer data from server request (to contentful) to browser
+  // this way we avoid make two resquest to CMS (one from server and other from browser)
+  projecstLandingTransferStateKey = makeStateKey('landingData');
   projectsLandingCache!: ProjectsLanding
-  projectsLandingCache2!: Observable<ContentfulProjectsLanding>
 
-  PROJECT_MODULE_ID = '3QoZhU7zRY6q5vO4NsUBfp'
+  PROJECT_MODULE_ENTRY_ID = '3QoZhU7zRY6q5vO4NsUBfp'
 
-  headers = new HttpHeaders().set(
-    'Authorization',
-    'Bearer ' + environment.CONTENT_ACCESS_TOKEN
-  )
-  constructor(private http: HttpClient) { 
-
+  constructor(
+      private http: HttpClient,
+      private state: TransferState
+  ) { 
     this.client = createClient({
       space: environment.SPACE_ID,
       accessToken: environment.CONTENT_ACCESS_TOKEN,
@@ -54,20 +47,23 @@ export class ContenfulService {
       })
       .toPromise()
       .then((response: any) => {
-        console.log(response);
+        console.log('haciendo petición------------------');
         return { data: response };
       });
   }
 
   async getPageData() {    
+    this.projectsLandingCache = this.state.get<ProjectsLanding>(this.projecstLandingTransferStateKey, null as unknown as ProjectsLanding);
+    console.log('*** projectLandingCache', this.projectsLandingCache)
     if (this.projectsLandingCache) return this.projectsLandingCache
 
     const query: EntryQuery = {
-      entryId: this.PROJECT_MODULE_ID,
-      ...ORDER_BY_NEWEST_QUERY
+      entryId: this.PROJECT_MODULE_ENTRY_ID,
+      ...ORDER_BY_NEWEST_QUERY 
     }
     let entry = await this.client.getEntry(query.entryId) as ContentfulProjectsLanding
     this.projectsLandingCache = normalizeProjectsLanding(entry)
+    this.state.set<ProjectsLanding>(this.projecstLandingTransferStateKey, this.projectsLandingCache);
 
     return this.projectsLandingCache
   }

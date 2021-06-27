@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 // Routing
@@ -35,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     APP_ROUTING,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    HttpClientModule
+    HttpClientModule,
+    BrowserTransferStateModule
   ],
   providers: [
     ProyectosService,
