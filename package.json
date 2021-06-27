@@ -15,7 +15,7 @@
     "dev:ssr": "ng run marosca-web:serve-ssr",
     "start:ssr": "npm run build:ssr && npm run serve:ssr",
     "prerender": "ng run marosca-web:prerender",
-    "buildSSR": "npm run build:ssr && npm run serve:ssr"
+    "postinstall": "npm run start:ssr"
   },
   "private": true,
   "dependencies": {
