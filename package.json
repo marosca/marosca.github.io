@@ -10,12 +10,12 @@
     "e2e": "ng e2e",
     "build:githubio": "npm run config -- --environment=prod && ng build marosca-web --configuration production --output-path docs && cp ./copy_to_docs/CNAME ./docs/CNAME && cp ./docs/index.html ./docs/404.html",
     "build:client": "npm run config -- --environment=prod && ng build marosca-web --configuration production && cp ./copy_to_docs/CNAME ./dist/marosca-web/browser/CNAME && cp ./dist/marosca-web/browser/index.html ./dist/marosca-web/browser/404.html",
-    "build:ssr": "npm run build:client && ng run marosca-web:server",
+    "build:ssr": "npm run build:client && ng run marosca-web:server:production",
     "serve:ssr": "NODE_ENV=production node ./dist/marosca-web/server/main.js",
     "dev:ssr": "ng run marosca-web:serve-ssr",
     "start:ssr": "npm run build:ssr && npm run serve:ssr",
     "prerender": "ng run marosca-web:prerender",
-    "postinstall": "npm run start:ssr"
+    "postinstall": "npm run build:ssr"
   },
   "private": true,
   "dependencies": {
