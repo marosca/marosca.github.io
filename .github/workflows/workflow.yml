@@ -9,9 +9,6 @@ on:
     branches:    
       # Push events on master branch
       - master
-    # Sequence of patterns matched against refs/tags
-    tags:        
-      - v*.*.*           # Push events to vx.x.x
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -23,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build angular app
+      - name: Build Angular Universal app
         run: |
           echo "Install dependency"
           npm install

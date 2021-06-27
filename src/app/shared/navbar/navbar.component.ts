@@ -1,7 +1,7 @@
-import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
-import * as bodymovin from 'bodymovin';
+import { Component, ElementRef, EventEmitter, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import * as lottie from 'lottie-web/build/player/lottie'
 import { Output } from '@angular/core';
-
+import { isPlatformBrowser } from '@angular/common';
 @Component({
 	selector: 'marosca-navbar',
 	templateUrl: './navbar.component.html',
@@ -14,36 +14,40 @@ export class NavbarComponent implements OnInit {
 	@Output()
   onGoSection: EventEmitter<string> = new EventEmitter()
 
+	isBrowser = isPlatformBrowser(this.platformId)
+
 	private lampara:any;
 	private maletin:any;
 	private telefono:any;
 
 	isOpen = false
 
-	constructor() {}
+	constructor(@Inject(PLATFORM_ID) public platformId: Object) {
+	}
 
 	ngOnInit() {
-		this.lampara = bodymovin.loadAnimation({
-			container: document.getElementById('lampara'),
+		if (!this.isBrowser) return
+			this.lampara = lottie.default.loadAnimation({
+			container: document.getElementById('lampara') as HTMLElement,
 			renderer: 'svg',
 			loop: true,
 			autoplay: false,
 			path: 'assets/icons/lampara/lampara_ani.json'
-		});
-		this.maletin = bodymovin.loadAnimation({
-			container: document.getElementById('maletin'),
-			renderer: 'svg',
-			loop: true,
-			autoplay: false,
-			path: 'assets/icons/maletin/maletin_ani.json'
-		});
-		this.telefono = bodymovin.loadAnimation({
-			container: document.getElementById('telefono'),
-			renderer: 'svg',
-			loop: true,
-			autoplay: false,
-			path: 'assets/icons/telefono/telefono_ani.json'
-		});
+			});
+			this.maletin = lottie.default.loadAnimation({
+				container: document.getElementById('maletin') as HTMLElement,
+				renderer: 'svg',
+				loop: true,
+				autoplay: false,
+				path: 'assets/icons/maletin/maletin_ani.json'
+			});
+			this.telefono = lottie.default.loadAnimation({
+				container: document.getElementById('telefono') as HTMLElement,
+				renderer: 'svg',
+				loop: true,
+				autoplay: false,
+				path: 'assets/icons/telefono/telefono_ani.json'
+			});
 	}
 
 	toogleNavBar(isNavBarOpen: boolean) {
@@ -98,6 +102,6 @@ export class NavbarComponent implements OnInit {
 
 	goToSection(section: string) {
 		this.onGoSection.emit(section);
-		this.	closeNavBar()
+		this.closeNavBar()
 	}
 }
