@@ -7,7 +7,7 @@ on:
   push:
     # Sequence of patterns matched against refs/heads
     branches:    
-      # Push events on master branch
+      # Push events on main branch
       - main
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -24,7 +24,6 @@ jobs:
         run: |
           echo "Install dependency"
           npm install
-      - run: git config user.email "mariolamoreno@hotmail.es" && git config user.name "marosca"
       - name: Deploy
         run: echo "Deploy to heroku"
       - uses: akhileshns/heroku-deploy@v3.12.12
