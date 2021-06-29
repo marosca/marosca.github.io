@@ -1,13 +1,25 @@
-### STAGE 1: Build ###
-FROM node:12.7-alpine AS build
-WORKDIR /usr/src/app
-COPY package.json package-lock.json ./
-RUN npm install
-COPY . .
-RUN npm run buildSSR
+# use more lightweight alpine version of node
+FROM node:12.7-alpine
 
-### STAGE 2: Run ###
-FROM nginx:alpine
-# COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /usr/src/app/dist/marosca-web /usr/share/nginx/html
-RUN echo "www.mariolamoreno.es" > ./usr/share/nginx/html/CNAME
+ENV PORT 80
+ARG BUILD_SSR_DIR=.
+ARG BUILD_BROWSER_DIR=.
+# set up app directory
+ENV HOME=/usr/src/app/
+RUN mkdir -p $HOME
+
+# Change directory so that the following commands run within the app directory
+WORKDIR $HOME
+
+# Copy application code to container
+COPY package.json $HOME
+# COPY .npmrc $HOME
+COPY $BUILD_SSR_DIR/dist/marosca-web/server dist/server
+COPY $BUILD_BROWSER_DIR/dist/marosca-web/browser dist/browser
+COPY node_modules node_modules
+# COPY server server
+
+# Expose port
+EXPOSE $PORT
+
+CMD ["yarn", "start:ssr"]
