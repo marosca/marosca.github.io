@@ -16,7 +16,7 @@
     "start:ssr": "npm run build:ssr && npm run serve:ssr",
     "prerender": "ng run marosca-web:prerender",
     "postinstall": "npm run build:ssr",
-    "heroku": "node ./dist/marosca-web/server/main.js"
+    "heroku": "node ./dist/marosca-web/server/main.js && bash ./scripts/purgeCaches.sh"
   },
   "private": true,
   "dependencies": {

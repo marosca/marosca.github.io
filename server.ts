@@ -50,8 +50,8 @@ export function app(): express.Express {
     return `ssr_${req.originalUrl}`;
   };
 
-  const DELETE_CACHE = '/delete';
-  const DELETE_ALL_CACHE = '/deleteall';
+  const DELETE_URL_CACHE = '/delete';
+  const PURGE_CACHE = '/purgecache';
 
   // Universal express-engine
   server.engine(
@@ -72,15 +72,18 @@ export function app(): express.Express {
   );
 
   // DELETE CACHE BY URL
-  server.get(`${DELETE_CACHE}*`, (req, res, next) => {
-    const urlToDelete = req.originalUrl.split(DELETE_CACHE)[1];
+  server.get(`${DELETE_URL_CACHE}*`, (req, res, next) => {
+    const urlToDelete = req.originalUrl.split(DELETE_URL_CACHE)[1];
     redisClient && redisClient.del(`ssr_${urlToDelete}`);
     console.log('Url cache delete: ', urlToDelete);
   });
   // DELETE ALL CACHE
-  server.get(DELETE_ALL_CACHE, (req, res, next) => {
-    redisClient && redisClient.flushdb();
-    console.log('all redis cache deleted');
+  server.get(PURGE_CACHE, (req, res, next) => {
+    if (redisClient) {
+      redisClient.flushall('ASYNC', (err: any, ok: any) => {
+        console.log('Delete all redis keys? :', ok);
+      });
+    }
   });
 
   // Middleware to send a cached response if one exists
@@ -111,7 +114,8 @@ export function app(): express.Express {
         if (
           isProd &&
           res.statusCode === 200 &&
-          req.originalUrl.indexOf(DELETE_CACHE) === -1
+          req.originalUrl.indexOf(DELETE_URL_CACHE) === -1 &&
+          req.originalUrl.indexOf(PURGE_CACHE) === -1
         ) {
           // Cache the rendered HTML
           redisClient && redisClient.set(cacheKey(req), html);
