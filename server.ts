@@ -39,7 +39,9 @@ export function app(): express.Application {
     : 'index';
 
   // Redis cache client
-  const redisClient = redis.createClient(process.env.REDIS_URL);
+  // Connect to a local redis intance locally, and the Heroku-provided URL in production
+  let REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
+  const redisClient = redis.createClient(REDIS_URL);
 
   // Creates a cache key using the request URL
   const cacheKey: (req: express.Request) => string = (req) => {
