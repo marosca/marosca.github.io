@@ -31,7 +31,7 @@ import { existsSync } from 'fs';
 const redis = require('redis');
 
 // The Express app is exported so that it can be used by serverless Functions.
-export function app(): express.Application {
+export function app(): express.Express {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/marosca-web/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html'))
