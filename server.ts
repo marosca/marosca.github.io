@@ -40,6 +40,7 @@ export function app(): express.Express {
 
   // Redis cache client
   // Connect to a local redis intance locally, and the Heroku-provided URL in production
+  const isProd = !!process.env.HAS_REDIS && !!process.env.IS_PRODUCTION;
   let REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
   const redisClient = redis.createClient(REDIS_URL);
 
@@ -52,7 +53,6 @@ export function app(): express.Express {
   const DELETE_CACHE = '/delete';
   const DELETE_ALL_CACHE = '/deleteall';
 
-  console.warn('process.env.REDIS_URL', process.env.REDIS_URL);
   // Universal express-engine
   server.engine(
     'html',
@@ -62,6 +62,27 @@ export function app(): express.Express {
   );
   server.set('view engine', 'html');
   server.set('views', distFolder);
+
+  // Serve static files from dist/browser
+  server.get(
+    '*.*',
+    express.static(distFolder, {
+      maxAge: '1y',
+    })
+  );
+
+  // DELETE CACHE BY URL
+  server.get(`${DELETE_CACHE}*`, (req, res, next) => {
+    const urlToDelete = req.originalUrl.split(DELETE_CACHE)[1];
+    redisClient.del(`ssr_${urlToDelete}`);
+    console.log('Url cache delete: ', urlToDelete);
+    // redisClient.flushdb();
+  });
+  // DELETE ALL CACHE
+  server.get(DELETE_ALL_CACHE, (req, res, next) => {
+    redisClient.flushdb();
+    console.log('all redis cache deleted');
+  });
 
   // Middleware to send a cached response if one exists
   const cachedResponse: express.RequestHandler = (req, res, next) =>
@@ -88,6 +109,7 @@ export function app(): express.Express {
           return req.next(error);
         }
         if (
+          isProd &&
           res.statusCode === 200 &&
           req.originalUrl.indexOf(DELETE_CACHE) === -1
         ) {
@@ -99,28 +121,15 @@ export function app(): express.Express {
     );
   };
 
-  // Serve static files from dist/browser
-  server.get(
-    '*.*',
-    express.static(distFolder, {
-      maxAge: '1y',
-    })
-  );
-
-  server.get(`${DELETE_CACHE}*`, (req, res, next) => {
-    const urlToDelete = req.originalUrl.split(DELETE_CACHE)[1];
-    redisClient.del(`ssr_${urlToDelete}`);
-    console.log('Borrada la url: ', urlToDelete);
-    // redisClient.flushdb();
-  });
-
-  server.get(DELETE_ALL_CACHE, (req, res, next) => {
-    redisClient.flushdb();
-    console.log('Borrada TODA la cache');
-  });
-
+  console.log('Is Prod and has redis?: ', isProd);
+  console.log('has redis?: ', process.env.HAS_REDIS);
+  console.log('is Production?: ', process.env.IS_PRODUCTION);
   // All regular routes use the Universal engine
-  server.get('*', cachedResponse, universalRenderer);
+  server.get(
+    '*',
+    isProd ? cachedResponse : universalRenderer,
+    universalRenderer
+  );
 
   return server;
 }
