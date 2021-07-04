@@ -6,18 +6,6 @@ import {
   ContentfulProjectsLanding,
 } from '../models/contentful.models';
 
-const hasWebpSupport = canUseWebP();
-
-function canUseWebP() {
-  var elem = document.createElement('canvas');
-  if (!!(elem.getContext && elem.getContext('2d'))) {
-    // was able or not to get WebP representation
-    return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
-  }
-  // very old browser like IE 8, canvas not supported
-  return false;
-}
-
 export function normalizeProjectFromContentful({
   fields,
 }: ContentfulProject): Project {
@@ -40,8 +28,7 @@ export function normalizeProjectFromContentful({
 }
 
 export function parseAsset(asset: Asset) {
-  const sufix = hasWebpSupport ? '?fm=webp' : '';
-  return asset ? `${asset.fields.file.url}${sufix}` : '';
+  return asset ? asset.fields.file.url : '';
 }
 
 export function normalizeProjectsLanding({

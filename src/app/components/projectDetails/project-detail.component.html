@@ -2,66 +2,96 @@
 	(onGoSection)="goToSection($event)">
 </marosca-navbar> -->
 <div class="contenido animated fadeIn" *ngIf="project">
-	<section id="proyecto" class="seccion detalle_proyecto front">
-		<div class="row">
-			<header class="col-lg-12 text-center cabecera_seccion">
-				<h2>{{ project.name }}</h2>
-				<h3><span>&lt;</span> {{ project.typeText }} <span>&gt;</span></h3>
-				<!-- <h3> <span>&lt;</span> front-end <span>/</span>motion <span>&gt;</span></h3> -->
-			</header>
-		</div>
+  <section id="proyecto" class="seccion detalle_proyecto front">
+    <div class="row">
+      <header class="col-lg-12 text-center cabecera_seccion">
+        <h2>{{ project.name }}</h2>
+        <h3><span>&lt;</span> {{ project.typeText }} <span>&gt;</span></h3>
+        <!-- <h3> <span>&lt;</span> front-end <span>/</span>motion <span>&gt;</span></h3> -->
+      </header>
+    </div>
 
-		<!-- imagen portada si es proyecto de front -->
-		<div class="row bottom-1" *ngIf="project.type == 'front-end' || project.type == 'ambos'">
-			<div class="col-md-12 col-lg-12 text-center">
-				<figure class="figure">
-					<img class="figure-img img-fluid rounded" [src]="project.imageCover" alt="Foto de portada del proyecto The Big Magazine">
-				</figure>
-			</div>
-		</div>
+    <!-- imagen portada si es proyecto de front -->
+    <div
+      class="row bottom-1"
+      *ngIf="project.type == 'front-end' || project.type == 'ambos'"
+    >
+      <div class="col-md-12 col-lg-12 text-center">
+        <figure class="figure">
+          ​<picture>
+            <source
+              [srcset]="project.imageCover + '?fm=webp'"
+              type="image/webp"
+            />
+            <img
+              class="figure-img img-fluid rounded"
+              [src]="project.imageCover"
+              [alt]="project?.name"
+            />
+          </picture>
+        </figure>
+      </div>
+    </div>
 
-		<!-- video si es un proyecto de motion-->
-		<div class="row bottom-3" *ngIf="project.type == 'motion'">
-			<div class="col-md-12 col-lg-12 text-center">
-				<div class="video">
-					<iframe [src]="project.video | domseguro: 'https://player.vimeo.com/video/'" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-				</div>
-			</div>
-		</div>
+    <!-- video si es un proyecto de motion-->
+    <div class="row bottom-3" *ngIf="project.type == 'motion'">
+      <div class="col-md-12 col-lg-12 text-center">
+        <div class="video">
+          <iframe
+            [src]="project.video | domseguro: 'https://player.vimeo.com/video/'"
+            frameborder="0"
+            webkitallowfullscreen
+            mozallowfullscreen
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
 
-		<!-- description -->
-		<div class="row bottom-3">
-			<div class="col-md-12 align-self-center">
-				<p class="departamento">{{ project.text.department }}</p>
-				<p class="cliente"><span>client:</span> {{ project.text.client }}</p>
+    <!-- description -->
+    <div class="row bottom-3">
+      <div class="col-md-12 align-self-center">
+        <p class="departamento">{{ project.text.department }}</p>
+        <p class="cliente"><span>client:</span> {{ project.text.client }}</p>
 
-				<p [innerHTML]="project.text.description | domseguro"></p>
-			</div>
+        <p [innerHTML]="project.text.description | domseguro"></p>
+      </div>
+    </div>
 
-		</div>
+    <!-- video si es un proyecto de ambos-->
+    <div class="row bottom-3" *ngIf="project.type == 'ambos'">
+      <div class="col-md-12 col-lg-12 text-center">
+        <div class="video">
+          <iframe
+            [src]="project.video | domseguro: 'https://player.vimeo.com/video/'"
+            width="800"
+            height="450"
+            frameborder="0"
+            webkitallowfullscreen
+            mozallowfullscreen
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
 
-		<!-- video si es un proyecto de ambos-->
-		<div class="row bottom-3" *ngIf="project.type == 'ambos'">
-			<div class="col-md-12 col-lg-12 text-center">
-				<div class="video">
-					<iframe [src]="project.video | domseguro: 'https://player.vimeo.com/video/'" width="800" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-				</div>
-			</div>
-		</div>
+    <!-- galeria -->
+    <div class="row bottom-3">
+      <div
+        *ngFor="let imagen of project.images"
+        class="col-sm-4 align-self-center margin-b-2"
+      >
+        ​<picture>
+          <source [srcset]="imagen + '?fm=webp'" type="image/webp" />
+          <img class="img-fluid rounded" [src]="imagen" [alt]="project?.name" />
+        </picture>
+      </div>
+    </div>
 
-		<!-- galeria -->
-		<div class="row bottom-3">
-			<div *ngFor="let imagen of project.images" class="col-sm-4 align-self-center margin-b-2">
-				<img class="img-fluid rounded" [src]="imagen">
-			</div>
-		</div>
-
-		<div class="row text-center btn-lg">
-			<div class="col-md-12">
-				<a [routerLink]="['']" class="btn btn-volver">Volver</a>
-			</div>
-		</div>
-
-
-	</section>
+    <div class="row text-center btn-lg">
+      <div class="col-md-12">
+        <a [routerLink]="['']" class="btn btn-volver">Volver</a>
+      </div>
+    </div>
+  </section>
 </div>
