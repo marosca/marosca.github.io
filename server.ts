@@ -40,9 +40,9 @@ export function app(): express.Express {
 
   // Redis cache client
   // Connect to a local redis intance locally, and the Heroku-provided URL in production
-  const isProd = !!process.env.HAS_REDIS && !!process.env.IS_PRODUCTION;
+  const isProd = !!process.env.HAS_REDIS && !!process.env.IS_PRODUCTION; // environment variables from heroku
   let REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379';
-  const redisClient = redis.createClient(REDIS_URL);
+  const redisClient = isProd ? redis.createClient(REDIS_URL) : undefined;
 
   // Creates a cache key using the request URL
   const cacheKey: (req: express.Request) => string = (req) => {
@@ -74,18 +74,18 @@ export function app(): express.Express {
   // DELETE CACHE BY URL
   server.get(`${DELETE_CACHE}*`, (req, res, next) => {
     const urlToDelete = req.originalUrl.split(DELETE_CACHE)[1];
-    redisClient.del(`ssr_${urlToDelete}`);
+    redisClient && redisClient.del(`ssr_${urlToDelete}`);
     console.log('Url cache delete: ', urlToDelete);
-    // redisClient.flushdb();
   });
   // DELETE ALL CACHE
   server.get(DELETE_ALL_CACHE, (req, res, next) => {
-    redisClient.flushdb();
+    redisClient && redisClient.flushdb();
     console.log('all redis cache deleted');
   });
 
   // Middleware to send a cached response if one exists
   const cachedResponse: express.RequestHandler = (req, res, next) =>
+    redisClient &&
     redisClient.get(cacheKey(req), (error: Error, reply: string) => {
       if (reply?.length) {
         // Cache exists. Send the response.
@@ -114,7 +114,7 @@ export function app(): express.Express {
           req.originalUrl.indexOf(DELETE_CACHE) === -1
         ) {
           // Cache the rendered HTML
-          redisClient.set(cacheKey(req), html);
+          redisClient && redisClient.set(cacheKey(req), html);
         }
         res.send(html);
       }
