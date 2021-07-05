@@ -74,30 +74,35 @@ export function app(): express.Express {
   // DELETE CACHE BY URL
   server.get(`${DELETE_URL_CACHE}*`, (req, res, next) => {
     const urlToDelete = req.originalUrl.split(DELETE_URL_CACHE)[1];
-    redisClient && redisClient.del(`ssr_${urlToDelete}`);
-    console.log('Url cache delete: ', urlToDelete);
+    if (redisClient) {
+      console.warn('*** Delete cache for url: ', urlToDelete);
+      redisClient.del(`ssr_${urlToDelete}`);
+    }
   });
   // DELETE ALL CACHE
   server.get(PURGE_CACHE, (req, res, next) => {
     if (redisClient) {
       redisClient.flushall('ASYNC', (err: any, ok: any) => {
-        console.log('Delete all redis keys? :', ok);
+        console.warn('*** Delete all redis keys?: ', ok);
       });
     }
   });
 
   // Middleware to send a cached response if one exists
-  const cachedResponse: express.RequestHandler = (req, res, next) =>
-    redisClient &&
-    redisClient.get(cacheKey(req), (error: Error, reply: string) => {
-      if (reply?.length) {
-        // Cache exists. Send the response.
-        res.send(reply);
-      } else {
-        // Use the Universal engine to render a response.
-        next();
-      }
-    });
+  const cachedResponse: express.RequestHandler = (req, res, next) => {
+    if (redisClient) {
+      return redisClient.get(cacheKey(req), (error: Error, reply: string) => {
+        if (reply?.length) {
+          // Cache exists. Send the response.
+          console.warn('*** Returning cache: ', req.originalUrl);
+          res.send(reply);
+        } else {
+          // Use the Universal engine to render a response.
+          next();
+        }
+      });
+    }
+  };
 
   // Middleware to render a response using the Universal engine
   const universalRenderer: express.RequestHandler = (req: any, res) => {
@@ -118,7 +123,10 @@ export function app(): express.Express {
           req.originalUrl.indexOf(PURGE_CACHE) === -1
         ) {
           // Cache the rendered HTML
-          redisClient && redisClient.set(cacheKey(req), html);
+          if (redisClient) {
+            console.warn('*** Saving in cache: ', req.originalUrl);
+            redisClient.set(cacheKey(req), html);
+          }
         }
         res.send(html);
       }

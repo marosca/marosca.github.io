@@ -14,7 +14,9 @@ export class AppComponent implements OnInit {
 
   goToSection(section: string) {
     this._router.navigate(['/home']).then(() => {
-      this.scrollTo(section);
+      setTimeout(() => {
+        this.scrollTo(section);
+      }, 0);
     });
   }
 
