@@ -4,6 +4,9 @@ const domino = require('domino');
 const fs = require('fs');
 const path = require('path');
 
+// DONT SLEEP APP
+// https://console.cron-job.org/jobs --> active
+// https://kaffeine.herokuapp.com/ (alternative)
 const distFolder = join(process.cwd(), 'dist/marosca-web/browser');
 const template = fs
   .readFileSync(path.join(distFolder, 'index.html'))
